@@ -1,24 +1,20 @@
 import { useEffect, useRef } from 'react'
 import './Messages.scss'
+import './TableCard.css'
 
 function Messages({ cards }) {
     const ref = useRef(null)
 
     useEffect(() => {
         ref.current.scrollTop = ref.current.scrollHeight
-    }, [cards])
+    }, [])
 
     return <div className="Messages" ref={ref}>
         {
             cards.map(message => {
                 return <div key={message.key}>
-                    <div>
-                        <span>
-                            {message.card.color}
-                        </span>
-                        <span>
-                            {message.card.number}
-                        </span>
+                    <div className="card" style={{ backgroundColor: message.card.color }}>
+                        <p>{message.card.number}</p>
                     </div>
                 </div>
 

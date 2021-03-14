@@ -1,0 +1,21 @@
+div.playercard {
+    width: 40px;
+    height: 60px;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+}
+
+div.playercard p {
+    margin: 0;
+    color: white;
+    font-size: 15px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    text-shadow: 0.6px 0.6px black;
+}
