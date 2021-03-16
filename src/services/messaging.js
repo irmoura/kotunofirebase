@@ -33,6 +33,18 @@ const MessagingService = {
         })
     },
 
+    async createCard() {
+        const user = auth().currentUser
+
+        var cores = ["yellow", "green", "blue", "red"]
+
+        db.collection('Players').add({
+            color: `${cores[Math.floor(Math.random() * 4) + 0]}`,
+            number: `${Math.floor(Math.random() * 10) + 0}`,
+            uid: user.uid
+        })
+    },
+
     async updateCard(card) {
         const user = auth().currentUser
 

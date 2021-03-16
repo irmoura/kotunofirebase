@@ -1,14 +1,15 @@
 import { useEffect, useRef } from 'react'
 import CardSender from '../components/CardSender'
+import MessagingService from '../services/messaging'
 import $ from 'jquery'
 import './Messages.scss'
 import './TableCard.css'
 
-function Messages({ cards }) {
+function PegarCartas() {
+    MessagingService.createCard()
+}
 
-    // function handleSubmit() {
-    //     $('#tabelaRegistros').append(`<tr><td><div class="playercard" style="background-color: red" onclick="${CardSender().handleSubmit}"><p>1</p></div></td></tr>`)
-    // }
+function Messages({ cards }) {
 
     const ref = useRef(null)
 
@@ -17,7 +18,7 @@ function Messages({ cards }) {
     }, [])
 
     return <div className="Messages" ref={ref}>
-        {/* <button id="btnPegarCartas" onClick={handleSubmit}>Pegar Cartas</button> */}
+        <button id="btnPegarCartas" onClick={() => { PegarCartas() }}>Pegar Cartas</button>
         {
             cards.map(message => {
                 return <div key={message.key}>
