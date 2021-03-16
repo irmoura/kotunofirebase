@@ -1,16 +1,20 @@
+import { useEffect, useRef } from 'react'
 import MessagingService from '../services/messaging'
+import { auth } from '../firebase'
+import $ from 'jquery'
 import './CardSender.scss'
 import './PlayerCards.css'
 
-function CardSender() {
+function CardSender({ cards2 }) {
 
     function handleSubmit(arg) {
         var playerCard = {
             number: arg.target.innerText,
-            color: arg.target.style.backgroundColor
+            color: arg.target.style.backgroundColor,
+            uid: arg.target.getAttribute("data-card-key")
         }
         var tableCard = {
-            number: document.querySelector('.card').innerHTML,
+            number: document.querySelector('.card').innerText,
             cor: document.querySelector('.card').style.backgroundColor
         }
         var cor = playerCard.color
@@ -18,6 +22,7 @@ function CardSender() {
             if (playerCard.color === tableCard.cor || playerCard.number === tableCard.number) {
                 // alert(`Jogada permitida`)
                 MessagingService.updateCard(playerCard)
+                MessagingService.updateUserCard(playerCard)                
             } else {
                 console.log(`Jogada não permitida`)
             }
@@ -26,64 +31,16 @@ function CardSender() {
     }
 
     return <div className={'MessageSender'}>
-        <table id="tabelaRegistros">
-            <tbody>
-                <tr>
-                    <td>
-                        <div className="playercard" style={{ backgroundColor: "red" }} onClick={handleSubmit}>
-                            <p>{0}</p>
-                        </div>
-                    </td>
-                    <td>
-                        <div className="playercard" style={{ backgroundColor: "green" }} onClick={handleSubmit}>
-                            <p>{1}</p>
-                        </div>
-                    </td>
-                    <td>
-                        <div className="playercard" style={{ backgroundColor: "blue" }} onClick={handleSubmit}>
-                            <p>{2}</p>
-                        </div>
-                    </td>
-                    <td>
-                        <div className="playercard" style={{ backgroundColor: "yellow" }} onClick={handleSubmit}>
-                            <p>{3}</p>
-                        </div>
-                    </td>
-                    <td>
-                        <div className="playercard" style={{ backgroundColor: "red" }} onClick={handleSubmit}>
-                            <p>{4}</p>
-                        </div>
-                    </td>
-                    <td>
-                        <div className="playercard" style={{ backgroundColor: "green" }} onClick={handleSubmit}>
-                            <p>{5}</p>
-                        </div>
-                    </td>
-                    <td>
-                        <div className="playercard" style={{ backgroundColor: "blue" }} onClick={handleSubmit}>
-                            <p>{6}</p>
-                        </div>
-                    </td>
-                </tr>
-                {/* <tr>
-                    <td>
-                        <div className="playercard" style={{ backgroundColor: "yellow" }} onClick={handleSubmit}>
-                            <p>{7}</p>
-                        </div>
-                    </td>
-                    <td>
-                        <div className="playercard" style={{ backgroundColor: "red" }} onClick={handleSubmit}>
-                            <p>{8}</p>
-                        </div>
-                    </td>
-                    <td>
-                        <div className="playercard" style={{ backgroundColor: "green" }} onClick={handleSubmit}>
-                            <p>{9}</p>
-                        </div>
-                    </td>
-                </tr> */}
-            </tbody>
-        </table>
+        {
+            cards2.map(message => {
+                return <div key={message.key}>
+                    <div className="playercard" style={{ backgroundColor: message.color }} onClick={handleSubmit} data-card-key={message.key}>
+                        <p>{message.number}</p>
+                    </div>
+                </div>
+
+            })
+        }
     </div>
 }
 

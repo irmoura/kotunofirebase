@@ -14,9 +14,9 @@ function App() {
 
   return (
     <div className="App">
-      <div className="Logo">
+      {/* <div className="Logo">
         <img src={logo} alt="AlgaZap" />
-      </div>
+      </div> */}
       { logged ? <Chat /> : <Login />}
     </div>
   );

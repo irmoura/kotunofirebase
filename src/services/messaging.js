@@ -50,6 +50,16 @@ const MessagingService = {
                     color: card.color
                 }
             })
+    },
+
+    async updateUserCard(card) {
+        db.collection('Players')
+            .doc(card.uid)
+            .update({
+                number: card.number,
+                color: card.color,
+                uid: ''
+            })
     }
 }
 
