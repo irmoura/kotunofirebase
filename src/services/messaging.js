@@ -38,7 +38,7 @@ const MessagingService = {
 
         var cores = ["yellow", "green", "blue", "red"]
 
-        db.collection('Players').add({
+        db.collection('Cards').add({
             color: `${cores[Math.floor(Math.random() * 4) + 0]}`,
             number: `${Math.floor(Math.random() * 10) + 0}`,
             uid: user.uid
@@ -65,7 +65,7 @@ const MessagingService = {
     },
 
     async updateUserCard(card) {
-        db.collection('Players')
+        db.collection('Cards')
             .doc(card.uid)
             .update({
                 number: card.number,

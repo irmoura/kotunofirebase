@@ -6,7 +6,7 @@ function useCards() {
     var user = auth().currentUser
     const [cards2, setMessages2] = useState([])
     const [messagesCollection2, loadingMessages2, error2] = useCollection(user == null ?
-        null : db.collection('Players').where("uid", "==", user.uid)
+        null : db.collection('Cards').where("uid", "==", user.uid)
     )
 
     useEffect(() => {
