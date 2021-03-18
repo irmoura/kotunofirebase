@@ -5,9 +5,25 @@ import $ from 'jquery'
 import './CardSender.scss'
 import './PlayerCards.css'
 
-function CardSender({ cards2 }) {
+function CardSender({ cards2, cards3, cards4 }) {
+
+    function jogadaValida(arg) {
+        var playerCard = {
+            number: arg.target.innerText,
+            color: arg.target.style.backgroundColor,
+            uid: arg.target.getAttribute("data-card-key")
+        }
+        var cor = playerCard.color
+        if (cor === 'red' || cor === 'green' || cor === 'blue' || cor === 'yellow') {
+            return true
+        } else {
+            return false
+        }
+    }
 
     function handleSubmit(arg) {
+        // //🚫🔄
+        var jogada = jogadaValida(arg)
         var playerCard = {
             number: arg.target.innerText,
             color: arg.target.style.backgroundColor,
@@ -18,16 +34,17 @@ function CardSender({ cards2 }) {
             cor: document.querySelector('.card').style.backgroundColor
         }
         var cor = playerCard.color
-        if (cor === 'red' || cor === 'green' || cor === 'blue' || cor === 'yellow') {
+        if (jogada) {
             if (playerCard.color === tableCard.cor || playerCard.number === tableCard.number) {
-                // alert(`Jogada permitida`)
-                MessagingService.updateCard(playerCard)
-                MessagingService.updateUserCard(playerCard)                
+                if (cards3[0].index === cards4[0].index) {
+                    MessagingService.updateCard(playerCard)
+                    MessagingService.updateUserCard(playerCard)
+                    MessagingService.updateIndexGame(cards3)
+                }
             } else {
                 console.log(`Jogada não permitida`)
             }
         }
-        //🚫🔄
     }
 
     return <div className={'MessageSender'}>

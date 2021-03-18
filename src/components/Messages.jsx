@@ -5,11 +5,20 @@ import $ from 'jquery'
 import './Messages.scss'
 import './TableCard.css'
 
-function PegarCartas() {
-    MessagingService.createCard()
-}
+function Messages({ cards, cards2, cards3, cards4 }) {
 
-function Messages({ cards }) {
+    function alerta() {
+        if (window.confirm("Deseja passar a vez?")) {
+            MessagingService.updateIndexGame(cards3)
+        }
+    }
+
+    function PegarCartas() {
+        if (cards3[0].index == cards4[0].index) {
+            MessagingService.createCard()
+            MessagingService.updateIndexGame(cards3)
+        }
+    }
 
     const ref = useRef(null)
 

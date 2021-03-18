@@ -72,6 +72,20 @@ const MessagingService = {
                 color: card.color,
                 uid: ''
             })
+    },
+
+    async updateIndexGame(cards3) {
+        var index = Number(cards3[0].index)
+        if (index < 1) {
+            index++
+        } else {
+            index = 0
+        }
+        db.collection('Game')
+            .doc('pjA3VcOU5nv1FZF4j35T')
+            .update({
+                index: `${index}`
+            })
     }
 }
 
