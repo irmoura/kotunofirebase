@@ -5,7 +5,7 @@ import MessagingService from '../services/messaging'
 import './Messages.scss'
 import './TableCard.css'
 
-function Messages({ cards, cards2, cards3, cards4, cards5 }) {
+function Messages({ cards, cards2, cards3, cards4, cards5, cards6 }) {
 
     // function alerta() {
     //     if (window.confirm("Deseja passar a vez?")) {
@@ -17,12 +17,12 @@ function Messages({ cards, cards2, cards3, cards4, cards5 }) {
         if (cards3[0].index === cards4[0].index) {
             switch (cards3[0].state) {
                 case "0"://Inicio do jogo
-                    MessagingService.createCard(7)
-                    MessagingService.updateIndexGame(cards3)
+                    MessagingService.createCard(7, cards6)
+                    MessagingService.updateIndexGame(cards3, cards5)
                     break;
                 case "1"://Durante a partida
-                    MessagingService.createCard(1)
-                    MessagingService.updateIndexGame(cards3)
+                    MessagingService.createCard(1, cards6)
+                    MessagingService.updateIndexGame(cards3, cards5)
                     break;
                 default:
                     break;

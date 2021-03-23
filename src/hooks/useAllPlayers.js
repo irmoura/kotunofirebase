@@ -4,7 +4,7 @@ import { db } from '../firebase';
 
 function useAllPlayers() {
     const [cards5, setMessages5] = useState([])
-    const [messagesCollection5, loadingMessages5, error5] = useCollection(db.collection('Players'))
+    const [messagesCollection5, loadingMessages5, error5] = useCollection(db.collection('Players').where("status", "==", "1"))
 
     useEffect(() => {
         const newMessages5 = messagesCollection5?.docs
