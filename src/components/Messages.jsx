@@ -5,7 +5,7 @@ import $ from 'jquery'
 import './Messages.scss'
 import './TableCard.css'
 
-function Messages({ cards, cards2, cards3, cards4 }) {
+function Messages({ cards, cards2, cards3, cards4, cards5 }) {
 
     function alerta() {
         if (window.confirm("Deseja passar a vez?")) {
@@ -28,6 +28,10 @@ function Messages({ cards, cards2, cards3, cards4 }) {
 
     return <div className="Messages" ref={ref}>
         <button id="btnPegarCartas" onClick={() => { PegarCartas() }}>Pegar Cartas</button>
+
+        {cards5.map(message => {
+            return message.index === cards3[0].index ? <h1 key={message.key}>{message.nome}</h1> : null
+        })}
         {
             cards.map(message => {
                 return <div key={message.key}>

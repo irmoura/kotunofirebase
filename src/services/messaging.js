@@ -76,7 +76,7 @@ const MessagingService = {
 
     async updateIndexGame(cards3) {
         var index = Number(cards3[0].index)
-        if (index < 1) {
+        if (index < 3) {
             index++
         } else {
             index = 0
