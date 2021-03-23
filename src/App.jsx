@@ -3,7 +3,7 @@ import './App.css';
 import Chat from './screens/Chat';
 import Login from './screens/Login';
 import AuthenticationService from './services/authentication';
-import logo from './assets/logo.svg'
+// import logo from './assets/logo.svg'
 
 function App() {
   const [logged, setLogged] = useState(AuthenticationService.isLoggedIn())

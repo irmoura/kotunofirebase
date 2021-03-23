@@ -33,16 +33,18 @@ const MessagingService = {
         })
     },
 
-    async createCard() {
+    async createCard(quantidade) {
         const user = auth().currentUser
 
         var cores = ["yellow", "green", "blue", "red"]
 
-        db.collection('Cards').add({
-            color: `${cores[Math.floor(Math.random() * 4) + 0]}`,
-            number: `${Math.floor(Math.random() * 10) + 0}`,
-            uid: user.uid
-        })
+        for (var i = 0; i < quantidade; i++) {
+            db.collection('Cards').add({
+                color: `${cores[Math.floor(Math.random() * 4) + 0]}`,
+                number: `${Math.floor(Math.random() * 10) + 0}`,
+                uid: user.uid
+            })
+        }
     },
 
     async updateCard(card) {

@@ -1,7 +1,7 @@
-import { useEffect, useRef } from 'react'
+// import { useEffect, useRef } from 'react'
 import MessagingService from '../services/messaging'
-import { auth } from '../firebase'
-import $ from 'jquery'
+// import { auth } from '../firebase'
+// import $ from 'jquery'
 import './CardSender.scss'
 import './PlayerCards.css'
 
@@ -33,7 +33,7 @@ function CardSender({ cards2, cards3, cards4 }) {
             number: document.querySelector('.card').innerText,
             cor: document.querySelector('.card').style.backgroundColor
         }
-        var cor = playerCard.color
+        // var cor = playerCard.color
         if (jogada) {
             if (playerCard.color === tableCard.cor || playerCard.number === tableCard.number) {
                 if (cards3[0].index === cards4[0].index) {

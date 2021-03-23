@@ -1,22 +1,32 @@
 import { useEffect, useRef } from 'react'
-import CardSender from '../components/CardSender'
+// import CardSender from '../components/CardSender'
 import MessagingService from '../services/messaging'
-import $ from 'jquery'
+// import $ from 'jquery'
 import './Messages.scss'
 import './TableCard.css'
 
 function Messages({ cards, cards2, cards3, cards4, cards5 }) {
 
-    function alerta() {
-        if (window.confirm("Deseja passar a vez?")) {
-            MessagingService.updateIndexGame(cards3)
-        }
-    }
+    // function alerta() {
+    //     if (window.confirm("Deseja passar a vez?")) {
+    //         MessagingService.updateIndexGame(cards3)
+    //     }
+    // }
 
     function PegarCartas() {
-        if (cards3[0].index == cards4[0].index) {
-            MessagingService.createCard()
-            MessagingService.updateIndexGame(cards3)
+        if (cards3[0].index === cards4[0].index) {
+            switch (cards3[0].state) {
+                case "0"://Inicio do jogo
+                    MessagingService.createCard(7)
+                    MessagingService.updateIndexGame(cards3)
+                    break;
+                case "1"://Durante a partida
+                    MessagingService.createCard(1)
+                    MessagingService.updateIndexGame(cards3)
+                    break;
+                default:
+                    break;
+            }
         }
     }
 
@@ -30,7 +40,9 @@ function Messages({ cards, cards2, cards3, cards4, cards5 }) {
         <button id="btnPegarCartas" onClick={() => { PegarCartas() }}>Pegar Cartas</button>
 
         {cards5.map(message => {
-            return message.index === cards3[0].index ? <h1 key={message.key}>{message.nome}</h1> : null
+            return message.index === cards3[0].index ?
+                <h3 key={message.key} style={{ color: "black" }}>{message.nome}</h3> :
+                null// <h3 key={message.key} style={{ color: "black" }}>{message.nome}</h3>
         })}
         {
             cards.map(message => {
