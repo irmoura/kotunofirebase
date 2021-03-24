@@ -5,7 +5,7 @@ import MessagingService from '../services/messaging'
 import './Messages.scss'
 import './TableCard.css'
 
-function Messages({ cards, cards2, cards3, cards4, cards5, cards6 }) {
+function Messages({ table, cards3, cards4, cards5, cards6 }) {
 
     // function alerta() {
     //     if (window.confirm("Deseja passar a vez?")) {
@@ -45,10 +45,10 @@ function Messages({ cards, cards2, cards3, cards4, cards5, cards6 }) {
                 null// <h3 key={message.key} style={{ color: "black" }}>{message.nome}</h3>
         })}
         {
-            cards.map(message => {
-                return <div key={message.key}>
-                    <div className="card" style={{ backgroundColor: message.card.color }}>
-                        <p>{message.card.number}</p>
+            table.map(card => {
+                return <div key={card.key}>
+                    <div className="card" style={{ backgroundColor: card.card.color }}>
+                        <p>{card.card.number}</p>
                     </div>
                 </div>
 
