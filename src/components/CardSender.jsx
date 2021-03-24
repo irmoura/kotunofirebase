@@ -47,16 +47,30 @@ function CardSender({ cards2, cards3, cards4, cards5 }) {
         }
     }
 
+    var gameState = ''
+
+    try {
+        gameState = cards3[0].state
+    } catch (error) {
+
+    }
+
+    function definirGanhador(){
+        MessagingService.updateWinner()
+        return ""
+    }
+
     return <div className={'MessageSender'}>
         {
-            cards2.map(message => {
-                return <div key={message.key}>
-                    <div className="playercard" style={{ backgroundColor: message.color }} onClick={handleSubmit} data-card-key={message.key}>
-                        <p>{message.number}</p>
+            cards2.length === 0 && gameState === "1" ? <h1>{definirGanhador()}</h1> :
+                cards2.map(message => {
+                    return <div key={message.key}>
+                        <div className="playercard" style={{ backgroundColor: message.color }} onClick={handleSubmit} data-card-key={message.key}>
+                            <p>{message.number}</p>
+                        </div>
                     </div>
-                </div>
 
-            })
+                })
         }
     </div>
 }

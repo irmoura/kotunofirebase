@@ -99,6 +99,16 @@ const MessagingService = {
             })
     },
 
+    async updateWinner() {
+        const user = auth().currentUser
+
+        db.collection('Table')
+            .doc('4946u8QweTu2YbVoJZ7U')
+            .update({
+                winner: user.displayName
+            })
+    },
+
     async updateUserCard(card) {
         db.collection('Cards')
             .doc(card.uid)

@@ -36,23 +36,32 @@ function Messages({ table, cards3, cards4, cards5, cards6 }) {
         ref.current.scrollTop = ref.current.scrollHeight
     }, [])
 
+    var gameWinner = ''
+
+    try {
+        gameWinner = table[0].winner
+    } catch (error) {
+
+    }
+
     return <div className="Messages" ref={ref}>
         <button id="btnPegarCartas" onClick={() => { PegarCartas() }}>Pegar Cartas</button>
 
         {cards5.map(message => {
             return message.index === cards3[0].index ?
-                <h3 key={message.key} style={{ color: "black" }}>{message.nome}</h3> :
+                <h3 key={message.key} style={{ color: "black", textAlign: "center" }}>{message.nome}</h3> :
                 null// <h3 key={message.key} style={{ color: "black" }}>{message.nome}</h3>
         })}
         {
-            table.map(card => {
-                return <div key={card.key}>
-                    <div className="card" style={{ backgroundColor: card.card.color }}>
-                        <p>{card.card.number}</p>
+            gameWinner != "" ? <h1 style={{ color: "black", textAlign: "center" }}>{`${gameWinner} ganhou !!!`}</h1> :
+                table.map(card => {
+                    return <div key={card.key}>
+                        <div className="card" style={{ backgroundColor: card.card.color }}>
+                            <p>{card.card.number}</p>
+                        </div>
                     </div>
-                </div>
 
-            })
+                })
         }
     </div>
 }
