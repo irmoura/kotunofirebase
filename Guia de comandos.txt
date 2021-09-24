@@ -1,0 +1,5 @@
+01 - yarn init -y
+02 - yarn global add create-react-app
+03 - npx create-react-app nome-da-aplicacao
+04 - yarn add firebase
+05 - yarn add react-firebase-hooks
